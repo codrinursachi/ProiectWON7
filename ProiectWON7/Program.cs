@@ -42,9 +42,9 @@ var address = new Address { City = "City", Street = "Street", Number = 8 ,Studen
 CreateStudent(student, address);
 //RemoveStudent(student);
 //UpdateStudent(student, "dent10", "Stu", 30);
-//ObtainAddress(student);
+ObtainAddress(student);
 //UpdateAddress(student, address2);
-Console.WriteLine(DeleteStudent(student));
+//Console.WriteLine(DeleteStudent(student));
 
 bool DeleteStudent(Student student)
 {
@@ -66,7 +66,7 @@ void UpdateAddress(Student student, Address address2)
 Address ObtainAddress(Student student)
 {
     using var dbCtx = new StudentsDbContext();
-    return dbCtx.Students.Include(s => s.Address).Select(s => s.Address).FirstOrDefault(s => s.Id == student.Id);
+    return dbCtx.Addresses.FirstOrDefault(s => s.StudentId == student.Id);
 }
 
 void UpdateStudent(Student studentToUpdate, string Name, string Surname, int age)
